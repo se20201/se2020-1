@@ -11,7 +11,9 @@ homework for software engineering
 
 ![](https://github.com/PufeiLi/se2020/raw/master/界面.jpg)
 ### 后台
-* 输入变量使用
-···
-e.get()
-···
+* 输入变量 ```
+             e.get()   
+             ```
+三角函数值输出```
+         t.insert("end", result)
+         ```
