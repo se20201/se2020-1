@@ -23,11 +23,11 @@ homework for software engineering
          t.insert("end", result)
          ```<br>
 
-* 界面按钮```
-         tk.Button(window,<br>
-                  text="sin",<br>
-                  # width=15,height=2,<br>
-                  width=15, height=1,<br>
-                  command=compute_sin, )<br>
+* 界面按钮，例如```
+         tk.Button(window,
+                  text="sin",
+                  # width=15,height=2,
+                  width=15, height=1,
+                  command=compute_sin, )
                   ```
          
