@@ -30,4 +30,25 @@ homework for software engineering
                   width=15, height=1,
                   command=compute_sin, )
                   ```
+* sin计算```
+        g = 0
+        t = x
+        n = 1
+        while (fabs(t) >= 1e-10):
+        g += t
+        n += 1
+        t = -t * x * x / (2 * n - 1) / (2 * n - 2)
+        return g
+        ```
+  cos计算```
+         x = 1.57079 - x,
+         return sin(x)
+         ```
+   tan计算```
+          return sin(x)/cos(x)
+          ```
+    cot计算```
+           return cos(x)/sin(x)
+           ```
+
          
