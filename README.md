@@ -11,9 +11,22 @@ homework for software engineering
 
 ![](https://github.com/PufeiLi/se2020/raw/master/界面.jpg)
 ### 后台
+* 界面尺寸、标题```
+             window = tk.Tk()
+             window.title("trigonometric function")
+             window.geometry("300x200")
+             ```
 * 输入变量 ```
              e.get()   
              ```
 三角函数值输出```
          t.insert("end", result)
-         ```
+         ```<br>
+
+* 界面按钮```
+         tk.Button(window,<br>
+                  text="sin",<br>
+                  # width=15,height=2,<br>
+                  width=15, height=1,<br>
+                  command=compute_sin, )<br>
+         
