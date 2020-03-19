@@ -30,7 +30,8 @@ homework for software engineering
                   width=15, height=1,
                   command=compute_sin, )
                   ```
-* sin计算```
+* 三角函数计算
+sin计算```
         g = 0
         t = x
         n = 1
