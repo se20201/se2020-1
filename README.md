@@ -41,13 +41,13 @@ homework for software engineering
         return g
         ```
   cos计算```
-         x = 1.57079 - x,
+         x = 1.57079 - x
          return sin(x)
          ```
-   tan计算```
+   ;tan计算```
           return sin(x)/cos(x)
           ```
-    cot计算```
+    ;cot计算```
            return cos(x)/sin(x)
            ```
 
