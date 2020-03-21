@@ -3,13 +3,12 @@ homework for software engineering
 
 三角函数软件工程项目
 =
-编写软件：python
+编写软件：python、matlab
 --
 ### 界面
-* (1)界面有一个棕色输入框和一个灰色输出框，分别用于三角函数变量的输入和值的输出。
-* (2)界面有四个按钮，分别为sin，cos，tan，cot，点击四个按钮可以分别计算对应三角函数的值。
-
-   ![](https://github.com/PufeiLi/se2020/raw/master/界面.png)
+* (1)点击界面的options按钮可下拉隐藏的工具，包含Python Language、M Language和Exit选项，可选择后台执行三角函数计算采用的编辑语言或系统退出操作。
+* (2)界面有两个输入框，分别为弧度和角度，对应于三角函数输入变量的角度制和弧度制两种形式，可对其中一个输入框输入，则另一个输入框变为输出框，计算对应弧度角度转换的值。
+   ![](https://gitub.com/PufeiLi/se2020/raw/master/界面.png)
 ### 后台
 * 界面尺寸、标题```
              window = tk.Tk()
