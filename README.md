@@ -11,6 +11,12 @@ homework for software engineering
 * （3）点击界面sin，cos，tan，cot按钮，可分别计算输入变量的正弦值，余弦值，正切值和余切值。
 * （4）点击界面的清除按钮，可清除在界面窗口执行的操作；点击退出按钮，可直接退出整个界面。
 ![](https://github.com/PufeiLi/se2020/raw/master/界面.png)
+
+### 代码
+* （1）code文件中，New_cos.m、New_cot.m、New_sin.m和New_tan.m使用matlab语言实现cos、cot、sin和tan函数。
+* （2）code文件中，function.py主要实现了三角函数运算界面显示（可以切换python语言或matlab语言），还包括用python语言实现cos、cot、sin和tan函数，调用matlab语言实现的三角函数。
+* （3）code文件中，run.py主要实现了三角函数运算界面显示（python语言），还包括用python语言实现cos、cot、sin和tan函数，但是不能调用matlab语言实现的三角函数。
+
 ### 后台
 * 界面尺寸、标题```
              window = tk.Tk()
