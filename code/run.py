@@ -1,11 +1,8 @@
-import matlab.engine
 import tkinter as tk
 from math import fabs
 from math import pi
 from tkinter import messagebox
 
-#启动matlab
-eng = matlab.engine.start_matlab()
 
 #trigonometric functions
 def radian2angle(x):
@@ -55,7 +52,7 @@ filemenu = tk.Menu(menubar, tearoff=0)  # tearoff 可以单独出来
 menubar.add_cascade(label='Options', menu=filemenu)
 filemenu.add_command(label='Python Language', command=p_program)
 filemenu.add_command(label='M Language', command=m_program)
-filemenu.add_separator()  # 这里就是一条分割线
+filemenu.add_separator()
 filemenu.add_command(label='Exit', command=window.quit)
 window.config(menu=menubar)
 
@@ -98,18 +95,12 @@ def convert():
 '''
 def compute_sin():
     var,_ = convert()
-    if flag:
-        result = eng.New_sin(var)
-    else:
-        result = sin(var)
+    result = sin(var)
     var_sin_result.set("%.8f"%result)
 
 def compute_cos():
     var,_ = convert()
-    if flag:
-        result = eng.New_cos(var)
-    else:
-        result = cos(var)
+    result = cos(var)
     var_cos_result.set("%.8f"%result)
 
 def compute_tan():
@@ -117,10 +108,7 @@ def compute_tan():
     if (var1 % 90) == 0:
         var_tan_result.set("error")
     else:
-        if flag:
-            result = eng.New_tan(var)
-        else:
-            result = tan(var)
+        result = tan(var)
         var_tan_result.set("%.8f"%result)
 
 def compute_cot():
@@ -128,10 +116,7 @@ def compute_cot():
     if (var%90) == 0:
         var_cot_result.set("error")
     else:
-        if flag:
-            result = eng.New_cot(var)
-        else:
-            result = cot(var)
+        result = cot(var)
         var_cot_result.set("%.8f"%result)
 
 def clear_all():
