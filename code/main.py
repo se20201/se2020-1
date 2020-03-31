@@ -1,58 +1,49 @@
 import tkinter as tk
-from math import fabs
-from math import pi
 from tkinter import messagebox
+from func  import *
+import ctypes
 
 
-#trigonometric functions
-def radian2angle(x):
-    return 180*x/(pi)
+#加载matlab生成的动态库dll文件
+ll = ctypes.cdll.LoadLibrary
 
-def angle2radian(x):
-    return x*(pi)/180
+# TODO 将 m 脚本整合成一个大函数，只需要加载一个dll
+m_sin = ll("./New_sin.dll")
+# sin.New_sin.argtype = ctypes.c_double # 设置函数传入参数的类型
+m_sin.New_sin.restype = ctypes.c_double   # 设置函数返回参数的类型
+m_cos = ll("./New_cos.dll")
+m_cos.New_cos.restype = ctypes.c_double
+m_tan = ll("./New_tan.dll")
+m_tan.New_tan.restype = ctypes.c_double
+m_cot = ll("./New_cot.dll")
+m_cot.New_cot.restype = ctypes.c_double
 
-def sin(x):
-    g = 0
-    t = x
-    n = 1
-    while (fabs(t) >= 1e-10):
-        g += t
-        n += 1
-        t = -t * x * x / (2 * n - 1) / (2 * n - 2)
-    return g
 
-def cos(x):
-    x = 1.57079 - x
-    return sin(x)
-
-def tan(x):
-    return sin(x)/cos(x)
-
-def cot(x):
-    return cos(x)/sin(x)
-
+#UI界面
 window = tk.Tk()
 window.title("trigonometric function")
 window.geometry("320x400")
 
-flag = 0
+
+flag = 0    #flag为0 使用python脚本 flag为1 使用m脚本
+
 def p_program():
     global flag
     flag = 0
-    tk.messagebox.showinfo(title='programming language', message='you have selected python!')
+    tk.messagebox.showinfo(title='programming language', message='you have selected python script!')
 
 def m_program():
     global flag
     flag = 1
-    tk.messagebox.showinfo(title='programming language', message='you have selected M language!')
+    tk.messagebox.showinfo(title='programming language', message='you have selected M script!')
 
-#top menu
+#top menu 菜单界面
 menubar = tk.Menu(window)
 filemenu = tk.Menu(menubar, tearoff=0)  # tearoff 可以单独出来
 menubar.add_cascade(label='Options', menu=filemenu)
-filemenu.add_command(label='Python Language', command=p_program)
-filemenu.add_command(label='M Language', command=m_program)
-filemenu.add_separator()
+filemenu.add_command(label='Python Script', command=p_program)
+filemenu.add_command(label='M Script', command=m_program)
+filemenu.add_separator()  # 这里就是一条分割线
 filemenu.add_command(label='Exit', command=window.quit)
 window.config(menu=menubar)
 
@@ -61,25 +52,27 @@ tk.Label(window, text='弧度').place(x=165, y=10)
 tk.Label(window, text='角度').place(x=245, y=10)
 
 
-#input number
-var_radian_input = tk.StringVar()
+#输入界面
+var_radian_input = tk.StringVar()   #弧度界面
 entry_radian_input = tk.Entry(window,
                               textvariable=var_radian_input,
                               width=8,bg="tan")
 entry_radian_input.place(x=150, y=40)
 
-var_angle_input = tk.StringVar()
+var_angle_input = tk.StringVar()    #角度界面
 entry_angle_input = tk.Entry(window,
                               textvariable=var_angle_input,
                               width=8,bg="tan")
 entry_angle_input.place(x=230, y=40)
 
 #弧度和角度之间转换
+# TODO 实际上是角度转换成弧度，因为计算时按弧度计算
 def convert():
     if (entry_radian_input.get() == "")&(entry_angle_input.get() == ""):
+        tk.messagebox.showwarning(title='FBI Warning', message='PLEASE INPUT A NUMBER！')
+        # var_angle_input.set("error")  # TODO 后面改成弹窗info
         radian_value = float(entry_radian_input.get())
         angle_value = float(entry_angle_input.get())
-        var_angle_input.set("error")    #后面改成弹窗info
     elif entry_radian_input.get() == "":
         angle_value = float(entry_angle_input.get())
         radian_value = angle2radian(angle_value)
@@ -90,17 +83,24 @@ def convert():
         var_angle_input.set("%.5f"%angle_value)
     return radian_value,angle_value
 
-'''
-无输入点击有bug，输入角度时有bug
-'''
+
+# TODO 无输入点击有弹窗，输入角度时有bug
+# TODO 输入字符弹窗提示
+# TODO 输入大量的数字如何计算
 def compute_sin():
     var,_ = convert()
-    result = sin(var)
+    if flag:
+        result = m_sin.New_sin(ctypes.c_double(var))
+    else:
+        result = sin(var)
     var_sin_result.set("%.8f"%result)
 
 def compute_cos():
     var,_ = convert()
-    result = cos(var)
+    if flag:
+        result = m_cos.New_cos(ctypes.c_double(var))
+    else:
+        result = cos(var)
     var_cos_result.set("%.8f"%result)
 
 def compute_tan():
@@ -108,7 +108,10 @@ def compute_tan():
     if (var1 % 90) == 0:
         var_tan_result.set("error")
     else:
-        result = tan(var)
+        if flag:
+            result = m_tan.New_tan(ctypes.c_double(var))
+        else:
+            result = tan(var)
         var_tan_result.set("%.8f"%result)
 
 def compute_cot():
@@ -116,9 +119,13 @@ def compute_cot():
     if (var%90) == 0:
         var_cot_result.set("error")
     else:
-        result = cot(var)
+        if flag:
+            result = m_cot.New_cot(ctypes.c_double(var))
+        else:
+            result = cot(var)
         var_cot_result.set("%.8f"%result)
 
+#清除所有界面的信息
 def clear_all():
     var_sin_result.set("")
     var_cos_result.set("")
@@ -170,3 +177,5 @@ l_cot.place(x=150, y=270)
 
 
 window.mainloop()
+
+
