@@ -179,26 +179,26 @@ btn_quit = tk.Button(window, text='退出',
 
 #result output
 var_sin_result = tk.StringVar()
-l_sin = tk.Label(window,width=17, height=2,
+l_sin = tk.Label(window,width=14, height=2,
                  textvariable=var_sin_result,
                  font=(12), #删除了字体
                  bg="gray")
 l_sin.place(x=150, y=90)
 
 var_cos_result = tk.StringVar()
-l_cos = tk.Label(window,width=17, height=2,
+l_cos = tk.Label(window,width=14, height=2,
                  textvariable=var_cos_result,
                  font=(12),bg="gray")
 l_cos.place(x=150, y=150)
 
 var_tan_result = tk.StringVar()
-l_tan = tk.Label(window,width=17, height=2,
+l_tan = tk.Label(window,width=14, height=2,
                  textvariable=var_tan_result,
                  font=(12),bg="gray")
 l_tan.place(x=150, y=210)
 
 var_cot_result = tk.StringVar()
-l_cot = tk.Label(window,width=17, height=2,
+l_cot = tk.Label(window,width=14, height=2,
                  textvariable=var_cot_result,
                  font=(12),bg="gray")
 l_cot.place(x=150, y=270)
