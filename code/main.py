@@ -67,6 +67,10 @@ entry_angle_input.place(x=230, y=40)
 
 #弧度和角度之间转换
 # TODO 实际上是角度转换成弧度，因为计算时按弧度计算
+# TODO 无输入点击有弹窗，输入角度时有bug==解决
+# TODO 输入字符弹窗提示==解决
+# TODO 输入大量的数字如何计算==解决
+
 def convert():
     if (entry_radian_input.get() == "")&(entry_angle_input.get() == ""):
         tk.messagebox.showwarning(title='FBI Warning', message='PLEASE INPUT A NUMBER！')
@@ -74,19 +78,43 @@ def convert():
         radian_value = float(entry_radian_input.get())
         angle_value = float(entry_angle_input.get())
     elif entry_radian_input.get() == "":
-        angle_value = float(entry_angle_input.get())
-        radian_value = angle2radian(angle_value)
-        var_radian_input.set("%.5f"%radian_value)
-    else:
-        radian_value = float(entry_radian_input.get())
-        angle_value = radian2angle(radian_value)
-        var_angle_input.set("%.5f"%angle_value)
-    return radian_value,angle_value
+        try:
+            angle_value = float(entry_angle_input.get())
+            radian_value = angle2radian(angle_value)
+            var_radian_input.set("%.5f"%radian_value)
+        except TypeError:
+            tk.messagebox.showerror(title='Error', message='请输入 < 99999999的数')
+        except ValueError:
+            tk.messagebox.showerror(title='Error', message='请输入 < 99999999的数')
+        except:
+            tk.messagebox.showerror(title='Error', message='请输入 < 99999999的数')
+
+    elif entry_angle_input.get() == "":
+        try:
+            radian_value = float(entry_radian_input.get())
+            angle_value = radian2angle(radian_value)
+            var_angle_input.set("%.5f"%angle_value)
+        except TypeError:
+            tk.messagebox.showerror(title='Error', message='请输入 < 99999999的数')
+        except ValueError:
+            tk.messagebox.showerror(title='Error', message='请输入 < 99999999的数')
+        except:
+            tk.messagebox.showerror(title='Error', message='请输入 < 99999999的数')
+    else: #两个输入框都有数据时，以弧度框为准
+        try:
+            radian_value = float(entry_radian_input.get())
+            angle_value = radian2angle(radian_value)
+            var_angle_input.set("%.5f"%angle_value)
+        except TypeError:
+            tk.messagebox.showerror(title='Error', message='请输入 < 99999999的数')
+        except ValueError:
+            tk.messagebox.showerror(title='Error', message='请输入 < 99999999的数')
+        except:
+            tk.messagebox.showerror(title='Error', message='请输入 < 99999999的数')
+
+    return (radian_value % (2*pi)), angle_value
 
 
-# TODO 无输入点击有弹窗，输入角度时有bug
-# TODO 输入字符弹窗提示
-# TODO 输入大量的数字如何计算
 def compute_sin():
     var,_ = convert()
     if flag:
