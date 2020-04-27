@@ -20,7 +20,9 @@ def sin(x):
     return g
 
 def cos(x):
-    x = 1.57079 - x
+    #x = 1.57079 - x  
+    #精度过低会导致误差过大，注释原代码，修改如下：
+    x = 1.5707963267949 - x
     return sin(x)
 
 def tan(x):
