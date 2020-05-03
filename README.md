@@ -11,6 +11,7 @@ homework for software engineering
 
 ### 后台
 * 测试函数，以python编写的sin模块为例  
+""
     error_max = 0  
     deg = 0  
 
