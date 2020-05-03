@@ -11,7 +11,7 @@ homework for software engineering
 
 ### 后台
 * 测试函数，以python编写的sin模块为例  
-""
+```
     error_max = 0  
     deg = 0  
 
@@ -30,6 +30,6 @@ homework for software engineering
     else:  
         # v.set('sin功能测试完成,误差大于0.001!')  
         content1.set("sin功能测试完成,误差:"+str(error_max))  
-
+```
 
          
