@@ -7,7 +7,7 @@ homework for software engineering
 --
 * 点击界面右下角的Test按钮，开始自测，对每个三角函数模块进行1000次求值测试，并将测试的结果逐条地显示在界面下方。要求和系统三角函数的误差小于阈值，若误差大于阈值，则额外弹出错误消息提示框。
 
-![](https://github.com/PufeiLi/se2020/raw/master/界面.png)
+![](https://github.com/se20201/se2020-2.0/blob/test/%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png)
 
 ### 后台
 * 测试函数，以python编写的sin模块为例  
