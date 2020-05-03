@@ -10,26 +10,25 @@ homework for software engineering
 ![](https://github.com/PufeiLi/se2020/raw/master/界面.png)
 
 ### 后台
-* 测试函数，以python编写的sin模块为例```
+* 测试函数，以python编写的sin模块为例  
+    error_max = 0  
+    deg = 0  
 
-    error_max = 0
-    deg = 0
+    for i in range(0,1000): #测试1000组数据  
+        deg =  i * 0.36  # 0.36步长测试1000组角度  
+        rad = func.angle2radian(deg) #角度转弧度  
+        error = math.fabs(func.sin(rad)-math.sin(rad)) #调用九组sin 与系统math.sin做误差分析  
+        error_max = error if(error>error_max)else error_max #得出最大误差  
+    error_max = '{:.5g}'.format(error_max)  
+    error_max = float(error_max)  
+    if (error_max > 1e-3):  
+        # print("error_max:", error_max, "deg:", deg)  
+        # v.set('sin功能测试完成,误差大于0.001!')  
+        content1.set("sin功能测试完成,误差:"+str(error_max))  
+        tkinter.messagebox.showwarning(title='出错了！', message='sin功能测试完成,误差大于0.001!')  
+    else:  
+        # v.set('sin功能测试完成,误差大于0.001!')  
+        content1.set("sin功能测试完成,误差:"+str(error_max))  
 
-    for i in range(0,1000): #测试1000组数据
-        deg =  i * 0.36  # 0.36步长测试1000组角度
-        rad = func.angle2radian(deg) #角度转弧度
-        error = math.fabs(func.sin(rad)-math.sin(rad)) #调用九组sin 与系统math.sin做误差分析
-        error_max = error if(error>error_max)else error_max #得出最大误差
-    error_max = '{:.5g}'.format(error_max)
-    error_max = float(error_max)
-    if (error_max > 1e-3):
-        # print("error_max:", error_max, "deg:", deg)
-        # v.set('sin功能测试完成,误差大于0.001!')
-        content1.set("sin功能测试完成,误差:"+str(error_max))
-        tkinter.messagebox.showwarning(title='出错了！', message='sin功能测试完成,误差大于0.001!')
-    else:
-        # v.set('sin功能测试完成,误差大于0.001!')
-        content1.set("sin功能测试完成,误差:"+str(error_max))
-    ```
 
          
